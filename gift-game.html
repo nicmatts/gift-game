@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<title>Gift game</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><style type="text/css"></style><style type="text/css"></style>
+<script src="/christmas/jquery.timer.js"></script>
+<link href="http://fonts.googleapis.com/css?family=La+Belle+Aurore" rel="stylesheet" type="text/css">
+<link rel="shortcut icon" type="image/png" href="favicon.png">
+<style>
+body {
+    font-family: 'La Belle Aurore', verdana, cursive;
+    margin-left: 2em;
+    background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 127, color-stop(0%, rgba(189, 8, 12, 0.821)), color-stop(100%, #eb5054));
+    background-image: -webkit-radial-gradient(center center, farthest-corner circle, rgba(189, 8, 12, 0.821) 0%, #eb5054 100%);
+    background-image: -moz-radial-gradient(center center, farthest-corner circle, rgba(189, 8, 12, 0.821) 0%, #eb5054 100%);
+    background-image: -ms-radial-gradient(center center, farthest-corner circle, rgba(189, 8, 12, 0.821) 0%, #eb5054 100%);
+    background-image: -o-radial-gradient(center center, farthest-corner circle, rgba(189, 8, 12, 0.821) 0%, #eb5054 100%);
+    background-image: radial-gradient(farthest-corner circle at center center, rgba(189, 8, 12, 0.821) 0%, #eb5054 100%);
+    min-height: 100%;
+}
+
+.header {
+    text-align: center;
+    display: block;
+    margin: auto;
+    background: #72b352;
+    border-radius: 25px;
+    -moz-box-shadow: 3px 3px 13px #441A1A;
+    -webkit-box-shadow: 3px 3px 13px #441A1A;
+    box-shadow: 3px 3px 13px #441A1A;
+    color: white;
+    text-shadow: 3px 3px 13px #441A1A;
+}
+
+h1 {
+    font-size: 5em;
+}
+
+li {
+    font-size: 3em;
+    margin-bottom: -0.8em;
+    cursor: pointer;
+}
+
+.col1 {
+    width: 70%;
+    float: left;
+}
+
+.col2 {
+    width: 30%;
+    float: right;
+}
+
+.active {
+  background: #72b352;
+  font-size: 5em;
+  position: absolute;
+  top: 8.6em;
+  right: 0.2em;
+  width: 5em;
+  height: 2em;
+  width: 440px;
+  padding-left: 1em;
+}
+
+
+div.names-list{
+    float:left;
+}
+
+div.timer {
+    border:1px #666666 solid;
+    width:480px;
+    height:300px;
+    font-size:36px;
+    text-align:center;
+    background-color: white;
+    border-radius: 3px;
+    -moz-box-shadow: 3px 3px 13px #441A1A;
+    -webkit-box-shadow: 3px 3px 13px #441A1A;
+    box-shadow: 3px 3px 13px #441A1A;
+    display: block;
+
+}
+
+.hour {
+  display:none;
+}
+
+.button {
+    -moz-box-shadow: 3px 3px 3px #441A1A;
+    -webkit-box-shadow: 3px 3px 3px #441A1A;
+    box-shadow: 3px 3px 3px #441A1A;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #77b55a), color-stop(1, #72b352));
+    background:-moz-linear-gradient(top, #77b55a 5%, #72b352 100%);
+    background:-webkit-linear-gradient(top, #77b55a 5%, #72b352 100%);
+    background:-o-linear-gradient(top, #77b55a 5%, #72b352 100%);
+    background:-ms-linear-gradient(top, #77b55a 5%, #72b352 100%);
+    background:linear-gradient(to bottom, #77b55a 5%, #72b352 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77b55a', endColorstr='#72b352',GradientType=0);
+    background-color:#77b55a;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border-radius:4px;
+    border:1px solid #4b8f29;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:arial;
+    font-size:13px;
+    font-weight:bold;
+    padding:6px 12px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #5b8a3c;
+}
+
+.button:hover {
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #72b352), color-stop(1, #77b55a));
+    background:-moz-linear-gradient(top, #72b352 5%, #77b55a 100%);
+    background:-webkit-linear-gradient(top, #72b352 5%, #77b55a 100%);
+    background:-o-linear-gradient(top, #72b352 5%, #77b55a 100%);
+    background:-ms-linear-gradient(top, #72b352 5%, #77b55a 100%);
+    background:linear-gradient(to bottom, #72b352 5%, #77b55a 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#72b352', endColorstr='#77b55a',GradientType=0);
+    background-color:#72b352;
+}
+
+.button:active {
+    position:relative;
+    top:1px;
+}
+
+.hour, .minute, .second, .colon {
+    font-size: 4em;
+}
+
+
+#shuffle {
+    font-size: larger;
+    margin: 1em -1em 0 0;
+}
+
+.control {
+    position: relative;
+    top: -2em;
+}
+
+.next {
+    color: white;
+}
+
+.hide {
+    text-decoration:line-through;
+}
+
+.names-list {
+-moz-columns: 3 342px;
+-webkit-columns: 3 342px;
+float: left;
+}
+
+#list {
+    margin-left: 72px;
+    margin-top: 0;
+}
+
+
+</style>
+</head>
+<body style="">
+    <div class="header">
+        <h1>Mattson Gift Game</h1>
+    </div>
+    <div class="col1">
+        <div class="container"></div>
+        <div class="names-list">
+          <ol id="list">
+            <li class="name">Andrea</li>
+            <!-- <li class="name">Angie</li> -->
+            <li class="name">Ashley</li>
+            <li class="name">Betty</li>
+            <li class="name">Bob</li>
+            <li class="name">Chelsea</li>
+            <li class="name">Corey</li>
+            <li class="name">Craig</li>
+            <li class="name">Danelle</li>
+           <!--  <li class="name">Darby</li> -->
+            <li class="name">Derek</li>
+            <li class="name">Dick</li>
+            <li class="name">Doris</li>
+            <li class="name">Dustin</li>
+            <!-- <li class="name">Dwight</li>-->        
+            <li class="name">Emily</li>
+            <li class="name">Jake</li>
+            <li class="name">Jamie</li>
+            <li class="name">Jeremy</li>
+            <li class="name">John</li>
+            <li class="name">Josh</li>
+            <li class="name">Julie</li>
+            <li class="name">Justin</li>
+           <!--  <li class="name">Kade</li> -->
+            <li class="name">Laurie</li>
+            <li class="name">Lisa</li>
+            <li class="name">Nicole</li>
+            <li class="name">Rick</li>
+            <li class="name">Roger</li>
+            <li class="name">Scot</li>
+            <li class="name">Steph</li>
+            <li class="name">Summer</li>
+          </ol>
+        <button id="shuffle" type="button" class="button">Draw numbers</button>
+        </div>
+    </div>
+    <div class="col2">
+      <div class="timer">
+        <span class="hour">00</span><span class="minute">01</span><span class="colon">:</span><span class="second">30</span>
+          <div class="control">
+            <button onclick="timer.start(1000)" class="button">Start</button> 
+            <button onclick="timer.stop()" class="button">Stop</button> 
+            <button onclick="timer.reset(90)" class="button">Reset</button> 
+          </div>
+      </div>
+    </div>
+  <script>
+var list = document.getElementById("list"), button = document.getElementById("shuffle");
+function shuffle(items){
+    var cached = items.slice(0), temp, i = cached.length, rand;
+    while(--i)
+    {
+        rand = Math.floor(i * Math.random());
+        temp = cached[rand];
+        cached[rand] = cached[i];
+        cached[i] = temp;
+    }
+    return cached;
+}
+
+function shuffleNodes(){
+    var nodes = list.children, i = 0;
+    nodes = Array.prototype.slice.call(nodes);
+    nodes = shuffle(nodes);
+    while(i < nodes.length){
+        list.appendChild(nodes[i]);
+        ++i;
+    }
+}
+
+button.onclick = shuffleNodes;
+
+$('li.name').on('click', function(){
+    $(this).addClass('active').siblings().removeClass('active');
+    $(this).next().addClass('next').siblings().removeClass('next');
+    timer.reset(90);
+    timer.start(1000);
+    $(this).prev().addClass('hide');
+});
+
+function _timer(callback)
+{
+    var time = 0;     //  The default time of the timer
+    var mode = 1;     //    Mode: count up or count down
+    var status = 0;    //    Status: timer is running or stoped
+    var timer_id;    //    This is used by setInterval function
+    
+    // this will start the timer ex. start the timer with 1 second interval timer.start(1000) 
+    this.start = function(interval)
+    {
+        interval = (typeof(interval) !== 'undefined') ? interval : 1000;
+ 
+        if(status == 0)
+        {
+            status = 1;
+            timer_id = setInterval(function()
+            {
+                switch(mode)
+                {
+                    default:
+                    if(time)
+                    {
+                        time--;
+                        generateTime();
+                        if(typeof(callback) === 'function') callback(time);
+                    }
+                    break;
+                    
+                    case 1:
+                    if(time < 86400)
+                    {
+                        time++;
+                        generateTime();
+                        if(typeof(callback) === 'function') callback(time);
+                    }
+                    break;
+                }
+            }, interval);
+        }
+    }
+    
+    //  Same as the name, this will stop or pause the timer ex. timer.stop()
+    this.stop =  function()
+    {
+        if(status == 1)
+        {
+            status = 0;
+            clearInterval(timer_id);
+        }
+    }
+    
+    // Reset the timer to zero or reset it to your own custom time ex. reset to zero second timer.reset(0)
+    this.reset =  function(sec)
+    {
+        sec = (typeof(sec) !== 'undefined') ? sec : 0;
+        time = sec;
+        generateTime(time);
+    }
+    
+    // Change the mode of the timer, count-up (1) or countdown (0)
+    this.mode = function(tmode)
+    {
+        mode = tmode;
+    }
+    
+    // This methode return the current value of the timer
+    this.getTime = function()
+    {
+        return time;
+    }
+    
+    // This methode return the current mode of the timer count-up (1) or countdown (0)
+    this.getMode = function()
+    {
+        return mode;
+    }
+    
+    // This methode return the status of the timer running (1) or stoped (1)
+    this.getStatus
+    {
+        return status;
+    }
+    
+    // This methode will render the time variable to hour:minute:second format
+    function generateTime()
+    {
+        var second = time % 60;
+        var minute = Math.floor(time / 60) % 60;
+        var hour = Math.floor(time / 3600) % 60;
+        
+        second = (second < 10) ? '0'+second : second;
+        minute = (minute < 10) ? '0'+minute : minute;
+        hour = (hour < 10) ? '0'+hour : hour;
+        
+        $('div.timer span.second').html(second);
+        $('div.timer span.minute').html(minute);
+        $('div.timer span.hour').html(hour);
+    }
+}
+ 
+// example use
+var timer;
+
+$(document).ready(function(e) 
+{
+    timer = new _timer
+    (
+        function(time)
+        {
+            if(time == 0)
+            {
+                timer.stop();
+                alert('Time is up!');
+            }
+        }
+    );
+    timer.reset(90);
+    timer.mode(0);
+});
+
+
+</script>
+
+</body>
+</html>
