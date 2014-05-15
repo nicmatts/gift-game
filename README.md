@@ -1,6 +1,6 @@
 gift-game
 =========
-This is the prototype web app for the annual Mattson gift game.  
+This is the prototype web app for the annual Mattson gift game.  http://funwithmattsons.com/christmas/gift-game.html
 
 First, use the "Draw numbers" button to shuffle the participants.  Then, when it's someone's turn, 
 click their name and the clock will start to count down.  The name of the person whose turn it is will appear 
